@@ -1,0 +1,36 @@
+
+<h2>📈 交易趋势统计</h2>
+<form method="get">
+  <label>统计模式：</label>
+  <select name="mode">
+    <option value="date" {% if mode == 'date' %}selected{% endif %}>按日期</option>
+    <option value="address" {% if mode == 'address' %}selected{% endif %}>按地址</option>
+  </select>
+  <label>方向：</label>
+  <select name="direction">
+    <option value="all" {% if direction == 'all' %}selected{% endif %}>全部</option>
+    <option value="in" {% if direction == 'in' %}selected{% endif %}>收入 (in)</option>
+    <option value="out" {% if direction == 'out' %}selected{% endif %}>支出 (out)</option>
+  </select>
+  <br><br>
+  起始时间：<input type="date" name="start" value="{{ start }}"> -
+  结束时间：<input type="date" name="end" value="{{ end }}">
+  <button type="submit">筛选</button>
+</form>
+<canvas id="chart" width="600" height="300"></canvas>
+<a href="/">返回主页</a>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: {{ labels|tojson }},
+    datasets: [{
+      label: '{{ label }}',
+      data: {{ values|tojson }},
+      backgroundColor: 'rgba(75, 192, 192, 0.6)'
+    }]
+  },
+});
+</script>

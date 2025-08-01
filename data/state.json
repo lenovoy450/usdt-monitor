@@ -1,0 +1,9 @@
+
+{
+  "is_running": true,
+  "watch_addresses": [],
+  "start_hour": 8,
+  "end_hour": 20,
+  "check_interval": 60,
+  "transactions": []
+}

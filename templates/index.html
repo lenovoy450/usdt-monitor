@@ -1,0 +1,13 @@
+
+<h2>📡 USDT Monitor 控制台</h2>
+<p>当前时间：{{ now }}</p>
+<p>状态：{% if state.is_running %}✅ 运行中{% else %}⏸️ 已暂停{% endif %}</p>
+<p>监控时间段：{{ state.start_hour }}:00 - {{ state.end_hour }}:00</p>
+<a href="/toggle">{{ "暂停监控" if state.is_running else "启动监控" }}</a> |
+<a href="/addresses">管理地址</a>
+<h3>📊 最近交易</h3>
+<ul>
+{% for tx in state.transactions %}
+  <li>{{ tx.time }} - {{ tx.amount }} USDT - {{ tx.address }}</li>
+{% endfor %}
+</ul>

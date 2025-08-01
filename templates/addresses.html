@@ -1,0 +1,12 @@
+
+<h2>📬 监控地址管理</h2>
+<form method="POST">
+  <input type="text" name="address" placeholder="TRC20 地址" required>
+  <button type="submit">添加地址</button>
+</form>
+<ul>
+{% for addr in state.watch_addresses %}
+  <li>{{ addr }} <a href="/addresses/delete/{{ addr }}">删除</a></li>
+{% endfor %}
+</ul>
+<a href="/">返回首页</a>
